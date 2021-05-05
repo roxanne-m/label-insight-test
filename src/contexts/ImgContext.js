@@ -14,7 +14,7 @@ export default ImgContext;
 export class ImgProvider extends Component {
   state = {
     error: null,
-    labelImage: {},
+    labelImage: [],
   };
 
   setError = (error) => {
