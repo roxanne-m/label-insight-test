@@ -1,3 +1,30 @@
 h1 {
   text-align: center;
 }
+
+button {
+  text-align: center;
+  background-color: blue;
+  border: none;
+  color: white;
+  padding: 15px;
+  font-size: 16px;
+}
+
+.button-styling {
+  margin-left: 50px;
+}
+/* 
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 100px);
+  grid-template-rows: repeat(5, 100px);
+  grid-gap: 10px;
+  grid-auto-flow: column;
+  background-color: #2196f3;
+} */
+/* 
+.grid-item {
+  padding: 20px;
+  border-radius: 5px solid red;
+} */

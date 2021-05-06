@@ -1,44 +1,69 @@
 import React, { Component } from 'react';
 import './App.css';
-import ImageApiService from './Services/image-service';
+// import ImageApiService from './Services/image-service';
 import ImgContext from './contexts/ImgContext';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      labelInsightImages: [],
+      limit: 25,
+    };
+  }
+
   static contextType = ImgContext;
 
   componentDidMount() {
     this.context.clearError();
-
-    ImageApiService.getImages().then((res) => {
-      this.context.setLabelImage(res);
-      console.log(this.context.labelImage, 'THIS CONTEXT');
-      console.log(res);
-    });
+    fetch('https://jsonplaceholder.typicode.com/photos')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({
+          labelInsightImages: responseJson,
+        });
+      });
   }
-  // handleFetchButton = (e) => {
-  //   e.preventDefault();
-  //   ImageApiService.getImages().then((res) => {
-  //     this.context.setLabelImage(res);
-  //   });
-  // };
-  render() {
-    // console.log(this.context, 'THIS CONTEXT');
-    const imagesDisplayed = this.context.labelImage.map((label) => {
-      return (
-        <div>
-          <h3>{label[0].title}</h3>
-        </div>
-      );
+
+  // Button that handles the event of displaying a new set of 25 colors
+  handleNewColorsButton = (e) => {
+    e.preventDefault();
+    this.setState({
+      limit: this.state.limit + 25,
     });
+  };
+
+  render() {
+    // destruct array
+    const { labelInsightImages } = this.state;
+
+    // conditional statement to only display 25 colors
+    let colorfulSquares = this.state.labelInsightImages
+      .slice(this.state.limit, this.state.limit + 25)
+      .map((images) => (
+        // <div className='grid' key={images.id}>
+        <img
+          className='grid-item'
+          key={images.id}
+          src={images.thumbnailUrl}
+          alt='Brightly colored squares'
+        />
+        // {/* </div> */}
+      ));
+
     return (
       <div>
-        <h1>Label Insight Images</h1>
-
-        <section>
-          <button>Fetch Images</button>
-          <p>Display 1</p>
-          <div>{imagesDisplayed}</div>
-        </section>
+        <header>
+          <h1>Paint Color Samples</h1>
+        </header>
+        <main>
+          <div className='button-styling'>
+            <button onClick={this.handleNewColorsButton}>New Colors</button>
+          </div>
+          <br />
+          <br />
+          <section>{colorfulSquares}</section>
+        </main>
       </div>
     );
   }
