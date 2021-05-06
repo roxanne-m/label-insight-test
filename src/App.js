@@ -51,11 +51,10 @@ class App extends Component {
     // destruct array
     const { labelInsightImages } = this.state;
 
-    // array prototype to display 25 colors
+    // array prototype to display 25 colors and map through array
     let colorfulSquares = this.state.labelInsightImages
       .slice(this.state.limit, this.state.limit + 25)
       .map((images) => (
-        // <div className='grid' key={images.id}>
         <div>
           <img
             className='grid-item'
@@ -99,8 +98,6 @@ class App extends Component {
             </div>
           </div>
         </div>
-
-        // {/* </div> */}
       ));
 
     return (
@@ -114,7 +111,7 @@ class App extends Component {
           </div>
           <br />
           <br />
-          <section>{colorfulSquares}</section>
+          <section className='grid'>{colorfulSquares}</section>
         </main>
       </div>
     );

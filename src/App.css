@@ -21,19 +21,19 @@ button {
 }
 
 /* Grid styling  */
-/* .grid {
+.grid {
   display: grid;
-  grid-template-columns: repeat(5, 100px);
-  grid-template-rows: repeat(5, 100px);
-  grid-gap: 10px;
+  grid-template-columns: repeat(2, 8rem);
+  grid-template-rows: repeat(13, 8rem);
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
   grid-auto-flow: column;
-  background-color: #2196f3;
-} */
-/* 
+  text-align: center;
+}
+
 .grid-item {
   padding: 20px;
-  border-radius: 5px solid red;
-} */
+}
 
 /* Section of images displayed */
 section {
@@ -47,5 +47,16 @@ section {
     display: flex;
     flex-direction: column;
     margin: 80px;
+  }
+
+  /* Desktop Grid styling  */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(5, 15rem);
+    grid-template-rows: repeat(5, 15rem);
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
+    grid-auto-flow: column;
+    text-align: center;
   }
 }
