@@ -32,8 +32,8 @@ export const Modal = (props) => {
               <label>Paint Description: </label>
               <input
                 type='text'
-                id='description'
-                value={props.userDescription}
+                name='userDescriptions'
+                value={props.userDescriptions}
                 onChange={props.handleDescriptionChange}
               ></input>
               <button type='submit'>Post</button>

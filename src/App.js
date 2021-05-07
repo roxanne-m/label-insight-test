@@ -11,7 +11,8 @@ class App extends Component {
       labelInsightImages: [], // Set initial state of images to empty array
       limit: 0, // Set initial limit to zero to begin at index 0 of array
       isOpen: false, // Set Modal clicked status to false and can update if closed or open
-      userDescription: [], // Empty array that stores user's descriptions
+      userDescriptions: [], // Empty array that stores user's descriptions
+      userDescription: '',
     };
   }
 
@@ -51,14 +52,18 @@ class App extends Component {
 
   handleDescriptionChange = (e) => {
     e.preventDefault();
-    this.setState({ userDescription: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
   };
   // Event Listener that updates the userDescription state
   handleDescription = (e) => {
     e.preventDefault();
-    // this.setState({
-    //   userDescription: e.target.value,
-    // });
+    this.setState({
+      userDescriptions: [
+        ...this.state.userDescriptions,
+        this.state.userDescription,
+      ],
+      userDescription: '',
+    });
     alert('A description was submitted');
   };
 
