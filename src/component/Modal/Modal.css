@@ -47,6 +47,7 @@
   display: block;
   font-size: 1rem;
   margin-left: auto;
+  margin-top: 15px;
   padding: 0.5rem 1.8rem;
   background: blue;
   color: #fff;
@@ -57,5 +58,6 @@
 
 .form-description {
   border: 2px solid black;
+  border-radius: 30px;
   padding: 5px;
 }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import ImgContext from './contexts/ImgContext';
-import { Modal } from './component/Modal';
+import { Modal } from './component/Modal/Modal';
+import { Intro } from './component/Introduction/Intro';
 
 class App extends Component {
   constructor(props) {
@@ -48,12 +49,17 @@ class App extends Component {
     });
   };
 
+  handleDescriptionChange = (e) => {
+    e.preventDefault();
+    this.setState({ userDescription: e.target.value });
+  };
   // Event Listener that updates the userDescription state
   handleDescription = (e) => {
     e.preventDefault();
-    this.setState({
-      userDescription: e.target.id,
-    });
+    // this.setState({
+    //   userDescription: e.target.value,
+    // });
+    alert('A description was submitted');
   };
 
   render() {
@@ -70,6 +76,7 @@ class App extends Component {
             isOpen={this.state.isOpen[images.id]}
             userDescription={this.state.userDescription}
             handleModal={this.handleModal}
+            handleDescriptionChange={this.handleDescriptionChange}
             handleDescription={this.handleDescription}
             title={images.title}
             id={images.id}
@@ -88,9 +95,10 @@ class App extends Component {
     return (
       <div>
         <header>
-          <h1>Paint Color Samples</h1>
+          <h1>Paint Visions</h1>
         </header>
         <main>
+          <Intro />
           <div className='button-styling'>
             <button onClick={this.handleNewColorsButton}>New Colors</button>
           </div>
