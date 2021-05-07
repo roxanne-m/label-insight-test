@@ -1,3 +1,4 @@
+/* Modal Styling */
 .modal-wrapper {
   background: white;
   width: 80%;
@@ -45,7 +46,7 @@
   font-size: 1rem;
   margin-left: auto;
   padding: 0.5rem 1.8rem;
-  background: #dd501d;
+  background: blue;
   color: #fff;
   border: none;
   outline: none;

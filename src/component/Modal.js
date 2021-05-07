@@ -1,35 +1,28 @@
 import React from 'react';
 import './Modal.css';
 
-export const Modal = (
-  isOpen,
-  handleModal,
-  handleDescription,
-  title,
-  id,
-  url
-) => {
+export const Modal = (props) => {
   return (
     <div
       className='modal-wrapper'
-      style={{ display: isOpen ? 'block' : 'none' }}
+      style={{ display: props.isOpen ? 'block' : 'none' }}
     >
       <div className='modal-header'>
         <p>Square Color Information</p>
-        <span onClick={handleModal} className='close-modal-button'>
+        <span onClick={props.handleModal} className='close-modal-button'>
           x
         </span>
       </div>
       <div className='modal-content'>
         <div className='modal-body'>
-          <h4>{title}</h4>
-          <img key={id} src={url} alt='Brightly colored square' />
+          <h4>{props.title}</h4>
+          <img key={props.id} src={props.url} alt='Brightly colored square' />
         </div>
 
         {/* Form for user's descriptions */}
         <section>
           <h4>Add a description!</h4>
-          <form onSubmit={handleDescription}>
+          <form onSubmit={props.handleDescription}>
             <label>Paint Description: </label>
             <input type='text' id='description' name='description'></input>
             <button type='submit'>Post</button>
@@ -45,7 +38,7 @@ export const Modal = (
           <div></div>
         </div>
         <div className='modal-footer'>
-          <button onClick={handleModal} className='button-cancel'>
+          <button onClick={props.handleModal} className='button-cancel'>
             Close
           </button>
         </div>

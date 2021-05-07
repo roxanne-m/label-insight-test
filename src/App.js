@@ -65,14 +65,6 @@ class App extends Component {
       .slice(this.state.limit, this.state.limit + 25)
       .map((images) => (
         <div onClick={this.handleModal}>
-          <img
-            className='grid-item'
-            key={images.id}
-            src={images.thumbnailUrl}
-            alt='Brightly colored squares'
-          />
-
-          {/* The Modal */}
           <Modal
             isOpen={this.state.isOpen}
             handleModal={this.handleModal}
@@ -81,6 +73,12 @@ class App extends Component {
             id={images.id}
             url={images.url}
           />
+          <img
+            className='grid-item'
+            key={images.id}
+            src={images.thumbnailUrl}
+            alt='Brightly colored squares'
+          />{' '}
         </div>
       ));
 
