@@ -9,6 +9,13 @@ h1 {
   text-align: center;
   margin: 25px;
   padding: 25px;
+  border: 2px solid coral;
+  background: coral;
+  border-radius: 75px;
+}
+
+header {
+  margin: 25px;
 }
 
 p {
@@ -43,6 +50,7 @@ button {
   grid-row-gap: 2rem;
   grid-auto-flow: column;
   text-align: center;
+  margin: auto;
 }
 
 .grid-item {
@@ -63,6 +71,13 @@ section {
     margin: 80px;
   }
 
+  h1 {
+    border-radius: 100px;
+  }
+
+  header {
+    margin: 50px;
+  }
   /* Desktop Grid styling  */
   .grid {
     display: grid;
@@ -72,5 +87,7 @@ section {
     grid-row-gap: 2rem;
     grid-auto-flow: column;
     text-align: center;
+    border: 2px solid red;
+    margin: auto;
   }
 }

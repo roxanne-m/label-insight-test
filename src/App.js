@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-// import ImageApiService from './Services/image-service';
 import ImgContext from './contexts/ImgContext';
 import { Modal } from './component/Modal';
 
@@ -41,10 +40,11 @@ class App extends Component {
   };
 
   // Event Listener that changes the state isOpen to either true or false in order to handle when clicked
-  handleModal = (e) => {
-    e.preventDefault();
+  handleModal = (id) => {
     this.setState({
-      isOpen: !this.state.isOpen,
+      isOpen: {
+        [id]: true,
+      },
     });
   };
 
@@ -57,16 +57,18 @@ class App extends Component {
   };
 
   render() {
-    // destruct array
+    // destructure array
     const { labelInsightImages } = this.state;
 
-    // array prototype to display 25 colors and map through array
+    // Array prototype to display 25 colors and map through array
+    // Call Modal component and pass in props
     let colorfulSquares = labelInsightImages
       .slice(this.state.limit, this.state.limit + 25)
       .map((images) => (
-        <div onClick={this.handleModal}>
+        <div>
           <Modal
-            isOpen={this.state.isOpen}
+            isOpen={this.state.isOpen[images.id]}
+            userDescription={this.state.userDescription}
             handleModal={this.handleModal}
             handleDescription={this.handleDescription}
             title={images.title}
@@ -74,11 +76,12 @@ class App extends Component {
             url={images.url}
           />
           <img
+            onClick={this.handleModal.bind(this, images.id)}
             className='grid-item'
             key={images.id}
             src={images.thumbnailUrl}
             alt='Brightly colored squares'
-          />{' '}
+          />
         </div>
       ));
 
