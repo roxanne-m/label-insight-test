@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 // import ImageApiService from './Services/image-service';
 import ImgContext from './contexts/ImgContext';
+import { Modal } from './component/Modal';
 
 class App extends Component {
   constructor(props) {
@@ -10,7 +11,6 @@ class App extends Component {
       labelInsightImages: [], // Set initial state of images to empty array
       limit: 0, // Set initial limit to zero to begin at index 0 of array
       isOpen: false, // Set Modal clicked status to false and can update if closed or open
-      isActive: '', // Set Modal to empty string
       userDescription: [], // Empty array that stores user's descriptions
     };
   }
@@ -32,7 +32,7 @@ class App extends Component {
       });
   }
 
-  // Button that handles the event of displaying a new set of 25 colors
+  // Event Listener for button that handles the event of displaying a new set of 25 colors
   handleNewColorsButton = (e) => {
     e.preventDefault();
     this.setState({
@@ -40,7 +40,7 @@ class App extends Component {
     });
   };
 
-  // Changes the state isOpen to either true or false in order to handle when clicked
+  // Event Listener that changes the state isOpen to either true or false in order to handle when clicked
   handleModal = (e) => {
     e.preventDefault();
     this.setState({
@@ -48,56 +48,7 @@ class App extends Component {
     });
   };
 
-  toggleModal = (id) => {
-    let idString = '';
-
-    if (id > 0) {
-      idString = 'modal' + String(id);
-      this.setState({ isActive: idString });
-    }
-    console.log('Toggle Modal past if statement!');
-
-    return (
-      <div
-        className='modal-wrapper'
-        style={{ display: this.state.isOpen ? 'block' : 'none' }}
-      >
-        <div className='modal-header'>
-          <p>Square Color Information</p>
-          <span onClick={this.handleModal} className='close-modal-button'>
-            x
-          </span>
-        </div>
-        <div className='modal-content'>
-          <div className='modal-body'>
-            {/* Displays title and image of square */}
-            <h4>{this.state.labelInsightImages.title}</h4>
-            <img
-              key={this.state.labelInsightImages.id}
-              src={this.state.labelInsightImages.url}
-              alt='Brightly colored square'
-            />
-
-            {/* Form for user's descriptions */}
-            <section>
-              <h4>Add a description!</h4>
-              <form onClick={this.handleDescription}>
-                <label>Paint Description: </label>
-                <input type='text' id='description' name='description'></input>
-                <button type='button'>Post</button>
-              </form>
-            </section>
-          </div>
-          <div className='modal-footer'>
-            <button onClick={this.handleModal} className='button-cancel'>
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
+  // Event Listener that updates the userDescription state
   handleDescription = (e) => {
     e.preventDefault();
     this.setState({
@@ -118,37 +69,18 @@ class App extends Component {
             className='grid-item'
             key={images.id}
             src={images.thumbnailUrl}
-            onClick={this.toggleModal.bind(images.id)}
             alt='Brightly colored squares'
           />
 
           {/* The Modal */}
-          {/* <div
-            className='modal-wrapper'
-            style={{ display: this.state.isOpen ? 'block' : 'none' }}
-          >
-            <div className='modal-header'>
-              <p>Square Color Information</p>
-              <span onClick={this.handleModal} className='close-modal-button'>
-                x
-              </span>
-            </div>
-            <div className='modal-content'>
-              <div className='modal-body'>
-                <h4>{images.title}</h4>
-                <img
-                  key={images.id}
-                  src={images.url}
-                  alt='Brightly colored square'
-                />
-              </div>
-              <div className='modal-footer'>
-                <button onClick={this.handleModal} className='button-cancel'>
-                  Close
-                </button>
-              </div>
-            </div>
-          </div> */}
+          <Modal
+            isOpen={this.state.isOpen}
+            handleModal={this.handleModal}
+            handleDescription={this.handleDescription}
+            title={images.title}
+            id={images.id}
+            url={images.url}
+          />
         </div>
       ));
 

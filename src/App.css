@@ -1,3 +1,9 @@
+main {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
 /* Header one styling */
 h1 {
   text-align: center;
@@ -5,14 +11,22 @@ h1 {
   padding: 25px;
 }
 
+p {
+  font-size: large;
+}
+
 /* Button styling and positioning */
 button {
   text-align: center;
-  background-color: blue;
+
+  display: block;
+  font-size: 1rem;
+  padding: 0.5rem 1.8rem;
+  background: #dd501d;
+  color: #fff;
   border: none;
-  color: white;
-  padding: 15px;
-  font-size: 16px;
+  outline: none;
+  cursor: pointer;
 }
 
 .button-styling {
@@ -88,7 +102,7 @@ section {
   font-size: 1rem;
   margin-left: auto;
   padding: 0.5rem 1.8rem;
-  background: #dd501d;
+  background: blue;
   color: #fff;
   border: none;
   outline: none;
